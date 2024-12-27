@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
 router.get("/home", authMiddleware, async (req, res) => {
   try {
     const files = await fileModel.find({ user: req.user.userId });
-    console.log(files);
+    // console.log(files);
 
     res.render("home", { files });
   } catch (error) {
