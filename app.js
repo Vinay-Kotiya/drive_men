@@ -35,7 +35,7 @@ app.use(
 );
 
 // Handle preflight requests
-app.options("*", cors()); // This line handles OPTIONS requests globally
+// app.options("*", cors()); // This line handles OPTIONS requests globally
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
