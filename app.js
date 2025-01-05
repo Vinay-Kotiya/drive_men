@@ -16,18 +16,35 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //cors configuration
+// app.use(
+//   // cors()
+//   cors({
+//     // origin: "http://localhost:5173",
+//     origin: [
+//       `${process.env.FRONT_END_URL}`,
+//       "https://drivecloneapi.vercel.app",
+//     ],
+//     methods: ["POST", "GET", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
+const allowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? [
+        `${process.env.FRONT_END_URL}`,
+        "https://drivecloneapi.vercel.app",
+        "https://driveclonemern.vercel.app",
+      ]
+    : ["http://localhost:5173"]; // Allow localhost in development
+
 app.use(
-  // cors()
   cors({
-    // origin: "http://localhost:5173",
-    origin: [
-      `${process.env.FRONT_END_URL}`,
-      "https://drivecloneapi.vercel.app",
-    ],
+    origin: allowedOrigins,
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 // Handle preflight requests
 app.options("*", cors()); // This line handles OPTIONS requests globally
 
