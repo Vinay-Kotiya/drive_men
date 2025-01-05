@@ -14,16 +14,26 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET, // Click 'View API Keys' above to copy your API secret
 });
-router.get("/", (req, res) => {
-  res.redirect("/home");
-});
+// router.get("/", (req, res) => {
+//   res.redirect("/home");
+// });
+// router.get("/", (req, res) => {
+//   UserModel.find({})
+//     .then((users) => res.json(users))
+//     .catch((error) => res.json(error));
+// });
 router.get("/home", authMiddleware, async (req, res) => {
   try {
-    const files = await fileModel.find({ user: req.user.userId });
-    // console.log(files);
+    // console.log(req.user.userId);
 
-    res.render("home", { files });
+    const files = await fileModel.find({ user: req.user.userId });
+    // console.log("username =>", req.user.username);
+    const username = req.user.username;
+    // res.render("home", { files });
+    res.json({ files, username });
   } catch (error) {
+    console.log(error);
+
     res
       .status(500)
       .json({ message: "Error fetching files", error: error.message });
@@ -33,9 +43,12 @@ router.get("/home", authMiddleware, async (req, res) => {
 router.post(
   "/upload",
   authMiddleware,
-  uploadCloud.single("file"),
+  uploadCloud.single("uploadfile"),
   async (req, res) => {
     try {
+      // console.log("uploading file");
+      // console.log(req.file);
+
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
       }
@@ -45,8 +58,8 @@ router.post(
         originalname: req.file.originalname,
         user: req.user.userId,
       });
-      // res.json(newFile);
-      res.redirect("/home");
+      res.json(newFile);
+      // res.redirect("/home");
     } catch (error) {
       res
         .status(500)
@@ -68,6 +81,7 @@ router.get("/download/:id", authMiddleware, async (req, res) => {
       user: loggedInUserId,
       _id: id,
     });
+    // console.log(" one file =", file);
 
     if (!file) {
       return res.status(404).json({ message: "File not found" });
@@ -96,7 +110,7 @@ router.get("/download/:id", authMiddleware, async (req, res) => {
       return res.status(500).json({ message: "Error generating download URL" });
     }
 
-    res.redirect(signedUrl);
+    res.json(signedUrl);
   } catch (error) {
     res
       .status(500)
