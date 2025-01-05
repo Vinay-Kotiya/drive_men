@@ -17,22 +17,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //cors configuration
 app.use(cors());
-const allowedOrigins =
-  process.env.NODE_ENV === "production"
-    ? [
-        `${process.env.FRONT_END_URL}`,
-        "https://drivecloneapi.vercel.app",
-        "https://driveclonemern.vercel.app",
-      ]
-    : ["http://localhost:5173"]; // Allow localhost in development
+// const allowedOrigins =
+//   process.env.NODE_ENV === "production"
+//     ? [
+//         `${process.env.FRONT_END_URL}`,
+//         "https://drivecloneapi.vercel.app",
+//         "https://driveclonemern.vercel.app",
+//       ]
+//     : ["http://localhost:5173"]; // Allow localhost in development
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     methods: ["POST", "GET", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
 
 // Handle preflight requests
 app.options("*", cors()); // This line handles OPTIONS requests globally
