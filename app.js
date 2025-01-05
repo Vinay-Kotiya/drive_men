@@ -20,8 +20,8 @@ app.use(
   // cors()
   cors({
     // origin: "http://localhost:5173",
-    origin: `${process.env.FRONT_END_URL}`,
-    // methods: ["POST", "GET", "PUT", "DELETE"],
+    origin: `${process.env.FRONT_END_URL},https://drivecloneapi.vercel.app`,
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
