@@ -17,13 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //cors configuration
 app.use(
-  // cors()
-  cors({
-    // origin: "http://localhost:5173",
-    origin: ["https://driveclonemern.vercel.app"],
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true,
-  })
+  cors()
+  // cors({
+  //   // origin: "http://localhost:5173",
+  //   origin: process.env.FRONT_END_URL,
+  //   methods: ["POST", "GET", "PUT", "DELETE"],
+  //   credentials: true,
+  // })
 );
 // Handle preflight requests
 app.options("*", cors()); // This line handles OPTIONS requests globally
