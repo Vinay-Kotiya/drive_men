@@ -89,8 +89,8 @@ router.post(
     // Set the token as a cookie
     res.cookie("token", token, {
       httpOnly: true, // Prevent access by client-side JavaScript
-      // secure: process.env.NODE_ENV === "production", // Ensure HTTPS in production
-      secure: false, // Use 'false' for local development
+      secure: process.env.NODE_ENV === "production", // Ensure HTTPS in production
+      // secure: false, // Use 'false' for local development
       maxAge: 3600000, // Cookie lifespan: 1 hour in milliseconds
       sameSite: "Strict", // Prevent cross-site request forgery
       path: "/", // Ensure the cookie is sent with all routes
