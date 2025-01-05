@@ -16,18 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //cors configuration
-// app.use(
-//   // cors()
-//   cors({
-//     // origin: "http://localhost:5173",
-//     origin: [
-//       `${process.env.FRONT_END_URL}`,
-//       "https://drivecloneapi.vercel.app",
-//     ],
-//     methods: ["POST", "GET", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
+app.use(cors());
 const allowedOrigins =
   process.env.NODE_ENV === "production"
     ? [
