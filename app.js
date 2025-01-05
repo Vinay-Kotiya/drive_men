@@ -20,7 +20,7 @@ app.use(
   // cors()
   cors({
     // origin: "http://localhost:5173",
-    origin: "https://driveclonemern.vercel.app",
+    origin: "https://driveinmern.vercel.app",
     credentials: true,
   })
 );
