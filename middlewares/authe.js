@@ -5,14 +5,14 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const LocalStorage = require("node-localstorage");
-const localStorage = new LocalStorage();
+// const LocalStorage = require("node-localstorage");
+// const localStorage = new LocalStorage();
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 function auth(req, res, next) {
-  // const token = req.cookies.token;
-  const token = localStorage.getItem("token");
+  const token = req.cookies.token;
+  // const token = localStorage.getItem("token");
   //   res.send(token);
   // console.log(token);
 
