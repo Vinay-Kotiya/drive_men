@@ -35,7 +35,7 @@ router.post(
       email,
       password: hashPassword,
     });
-    console.log(newUser);
+    // console.log(newUser);
     // Remove multiple response sends - can only send one response
     // res.json(newUser);
     // res.redirect("/user/login");
