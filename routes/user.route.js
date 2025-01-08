@@ -98,7 +98,7 @@ router.post(
     res.json({ token: token });
     // console.log("token is", token);
 
-    console.log("login successful");
+    // console.log("login successful");
     // res.redirect("http://localhost:5173/home");
   }
 );
