@@ -18,6 +18,7 @@ function auth(req, res, next) {
 
   if (!token) {
     console.log("Unauthorized token is empty");
+
     return res.status(401).json({ message: "Unauthorized token is empty" });
 
     // res.redirect("/user/login");
