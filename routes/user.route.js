@@ -92,7 +92,11 @@ router.post(
       secure: process.env.NODE_ENV === "production" ? true : false, // Ensure HTTPS in production
       // secure: false, // Use 'false' for local development
       maxAge: 3600000, // Cookie lifespan: 1 hour in milliseconds
+<<<<<<< HEAD
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Prevent cross-site request forgery
+=======
+       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Prevent cross-site request forgery
+>>>>>>> 855f77c0064fe2c5a97030507110895f848def4b
       path: "/", // Ensure the cookie is sent with all routes
     });
 
