@@ -92,7 +92,7 @@ router.post(
       secure: process.env.NODE_ENV === "production", // Ensure HTTPS in production
       // secure: false, // Use 'false' for local development
       maxAge: 3600000, // Cookie lifespan: 1 hour in milliseconds
-      sameSite: "Srtict", // Prevent cross-site request forgery
+       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Prevent cross-site request forgery
       path: "/", // Ensure the cookie is sent with all routes
     });
     res.json({ token: token });
